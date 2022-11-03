@@ -24,9 +24,13 @@ class ProductoController extends Controller
         
         // Obtener todos los registros 
         $productos = Producto::all();
-
+        
+        if(Gate::denies('usuario'))
+        {
+            return view('productos.index', compact('productos'));
+        }
          // enviar a la vista
-        return view('productos.index', compact('productos'));
+    
         
     }
 

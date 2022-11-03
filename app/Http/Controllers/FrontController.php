@@ -16,21 +16,27 @@ class FrontController extends Controller
      */
     public function index(Request $request)
     {
+
+        $categoria = Categoria::all();
+        $producto = Producto::where('categoria_id', '=', $categoria); 
+
         if($request)
         {
-            $categorias = Categoria::all();
+            $consulta = Categoria::with('productos')->get();
+            $categoria = Categoria::all();
             $query = $request->buscar;
             $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')
                                     ->orderBy('nombre', 'asc')->paginate(3); 
-            return view('welcome', compact('productos', 'categorias', 'query'));
 
+
+            return view('welcome', compact('productos', 'categoria', 'query'));
         }
         // Obtener todos los registros
         $productos = Producto::orderBy('nombre', 'asc')->paginate(3); 
 
         // Envíar a la vista
-        $categorias = Categoria::all();
-        return view('welcome',compact('categorias', 'productos'));
+        $categoria = Categoria::all();
+        return view('welcome',compact('categoria', 'productos'));
     }
 
     /**

@@ -23,93 +23,67 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<nav class="navbar nab navbar-expand-lg ">
+    <div class="nav-item ">
+    <form action="{{ route('welcome.index') }}">
+        <button class="btn btn-outline-light ml-3">Volver</button>
+    </form>
+      
+    </div>
+    <div class="container"> <a class="navbar-brand text-light" data-scroll-nav="0" href="">Dalitso Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span
+                class="fas fa-bars"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <form class="d-flex" role="search" >
+                <input class="form-control me-2" type="search" placeholder="Buscar..." name="buscar"
+                    aria-label="Buscar">
+                    <a href="#busqueda" class="barra"><button class="btn btn-outline-light"> Buscar</button></a>
+            </form>
+            <ul class="navbar-nav text-dark ms-3">
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu text-dark">
+                            <li>
+                                <a class="dropdown-item text-dark" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit()";>
+                                    Cerrar sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endauth
+                </ul>
+        </div>
+    </div>
+</nav>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar nab navbar-expand-lg ">
-        <div class="nav-item ">
-        <form action="{{ route('welcome.index') }}">
-            <button class="btn btn-outline-light ml-3">Volver</button>
-        </form>
-          
-        </div>
-        <div class="container"> <a class="navbar-brand text-light" data-scroll-nav="0" href="">Dalitso Shop</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span
-                    class="fas fa-bars"></span> </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                </ul>
-                <form class="d-flex" role="search" >
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." name="buscar"
-                        aria-label="Buscar">
-                        <a href="#busqueda" class="barra"><button class="btn btn-outline-light"> Buscar</button></a>
-                </form>
-                <ul class="navbar-nav text-dark ms-3">
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <ul class="dropdown-menu text-dark">
-                                <li>
-                                    <a class="dropdown-item text-dark" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()";>
-                                        Cerrar sesión
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="post">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endauth
-                    </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End Navbar -->
-
-    <!-- Banner Image -->
+    
 
     <div class="banner text-center" data-scroll-index='0'>
         <div class="banner-overlay">
-            <div class="container">
-                <h1 class="text-capitalize">Bienvenido a Dalitso Shop</h1>
-                <p>Estar más allá de la moda, ese es nuestro arquetipo de estilo.</p>
-                
-                @guest
-                <a href="{{ route('productos.index') }}" class="banner-btn shadow">Iniciar sesion</a>
-                @endguest
-
-            </div>
+               <h1 class="text-capitalize mb-3">{{ $categoria->nombre }}</h1>
+               <p class="text-white mt-3">Innova con nuestro estilo</p>
         </div>
+        
     </div>
-
-    <!-- End Banner Image -->
-
-    <!-- About -->
-
     <div class="about-us section-padding" data-scroll-index='1'>
         <div class="container">
             <div class="row">
                 <div>
-                    <div class="col-md-12 section-title text-center">
-                        <h3>Categorias.</h3>
-                        <span class="section-title-line" id="busqueda"></span>
-                        @foreach ($categoria as $item)
-                
-                        <tr>    
-                        <td><a class="pl-3 pt-3"href="{{ route('categorias.show', ['categoria' => $item->id]) }}" >{{ $item->nombre }}</a>
-                        </td>
                     
-                         </tr>
-                        @endforeach
-                
-                    </div>
                     <div class="col-md-12 mb-4 section-title text-center" >
-                        <h3>Descubre nuestros nuevos productos.</h3>
+                        <h3>productos.</h3>
                         <span class="section-title-line"></span>
                     </div>
                 </div>
@@ -135,92 +109,13 @@
                             </div>
                         @endforeach
                     </div>
-                    {{ $productos->links() }}
+            
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
-    </div>
-    <div class="col-md-6 mb-50">
-        <div class="section-img"> <img src="images/about.jpg" alt="" class="img-responsive" />
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <!-- End About -->
-
-    <!-- Services -->
-    {{-- <div class="services section-padding bg-grey" data-scroll-index='2'>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 section-title text-center">
-                    <h3>We Are Best At Our Service</h3>
-                    <p>Vestibulum elementum dui tempus dolor gravida, vel mattis erat fermentum.</p>
-                    <span class="section-title-line"></span>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-chart-line"></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Chart Line</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-bullhorn "></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Quick Anouncement</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>class="preFoto"
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-map-marked"></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Mark Location</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-bug"></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Bug Solution</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-comments"></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Fast Communication</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-30">
-                    <div class="service-box bg-white text-center">
-                        <div class="icon"> <i class="fas fa-paint-brush"></i> </div>
-                        <div class="icon-text">
-                            <h4 class="title-box">Clean Design</h4>
-                            <p>Sed malesuada, est eget condimentum iaculis, nisi ex facilisis metus.</p>
-                        </div>
-                    </div>
-                </div> --}}
-    </div>
-    </div>
-    </div>
-    
-
+</body>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -368,3 +263,6 @@
 
         });
     </script>
+
+
+

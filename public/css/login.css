@@ -43,3 +43,18 @@ a {
 	background:url(../images/rolito.jpg) no-repeat 0% 0% / 100% 100%;
 
 }
+
+.body {
+    background-color: #16191c;
+    background-size: cover;
+    background-attachment: fixed;
+    margin-top: 10.7%;
+    /* margin-bottom: 14.2%; */
+}
+
+.f {
+    
+    border-radius: 1rem;
+    height: 33rem;
+    margin: 1rem;
+}

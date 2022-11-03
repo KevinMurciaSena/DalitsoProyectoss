@@ -35,3 +35,8 @@ Route::resource('categorias', CategoriaController::class)->middleware('auth');
 Route::resource('productos', ProductoController::class)->middleware('auth');
 Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 Route::resource('carritos', ReciboController::class)->middleware('auth');
+Route::resource('welcome', FrontController::class)->middleware('auth');
+
+
+
+//Route('categoriaUser.show', ['categoriaUser' => $categorias->id]);

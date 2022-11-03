@@ -20,3 +20,9 @@
     padding-bottom: 2rem;
     padding-top: 1rem;
 }
+
+.barra{
+    z-index: 50rem;
+    margin-top: -0.45rem;
+    height: 1rem;
+}

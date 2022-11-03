@@ -32,10 +32,10 @@ class CategoriaController extends Controller
             return view('categorias.index', compact('categorias', 'query'));
         }
         // Obtener todos los registros 
-        $categorias = Categoria::orderBy('nombre', 'asc')
+        $categoria= Categoria::orderBy('nombre', 'asc')
                                 ->paginate(5);
         // enviar a la vista
-        return view('categorias.index','welcome', compact('categorias'));
+        return view('categorias.index','welcome', compact('categoria'));
 
     }
 
@@ -77,14 +77,17 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+      
+
+    
         $categoria = Categoria::findOrFail($id);
         $productos = Producto::where('categoria_id', $id)
-                                        ->orderBy('nombre', 'asc')
-                                        ->get();
+                                        ->orderBy('nombre', 'asc')->paginate(15);
+        
         // dd($productos);
-        return view('categorias.show', compact('categoria', 'productos'));
+        return view('categoriaUser.index', compact('categoria', 'productos'));
         
     }
 
