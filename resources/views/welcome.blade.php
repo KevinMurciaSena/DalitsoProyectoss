@@ -117,7 +117,7 @@
                     <div class="row">
                         @foreach ($productos as $producto)
                             <div class="col-lg-4 col-md-5 col-sm-5 col-8">
-                                <div class="card mb-5 shadow" style="width: 100%; height:33rem;">
+                                <div class="card mb-5 shadow" style="width: 100%; height:38rem;">
                                     <img src="{{ asset('storage') . '/' . $producto->foto }}"
                                         class="img-fluid img-miniatura mt-3" alt="foto">
                                     <div class="card-body">
@@ -127,12 +127,18 @@
                                                 {{ $producto->descripcion }}</li>
                                             <li class="list-group-item"><b>Precio:</b> ${{ $producto->precio }}</li>
                                             <div class=" boton card-body">
-                                            <li class="list-group-item"><button class="btn btn-outline-dark w-100 shadow">Ver
-                                                    producto</button></li></div>
+                                            <li class="list-group-item">
+                                                <form action="{{ route('compras.show', $producto->id) }}">
+                                                <button class="btn btn-outline-dark w-100 shadow">
+                                                Ver producto</button>
+                                              </form>
+                                        </li></div>
+                                                    
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                                   
                         @endforeach
                     </div>
                     {{ $productos->links() }}

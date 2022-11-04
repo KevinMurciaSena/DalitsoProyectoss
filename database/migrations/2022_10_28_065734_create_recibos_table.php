@@ -15,7 +15,11 @@ class CreateRecibosTable extends Migration
     {
         Schema::create('recibos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('users_name')->constrained('users');
+            $table->foreignId('productos_id')->constrained('productos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

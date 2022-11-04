@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\CompraController;
+
 
 
 /*
@@ -36,6 +38,7 @@ Route::resource('productos', ProductoController::class)->middleware('auth');
 Route::resource('usuarios', UsuarioController::class)->middleware('auth');
 Route::resource('carritos', ReciboController::class)->middleware('auth');
 Route::resource('welcome', FrontController::class)->middleware('auth');
+Route::resource('compras', CompraController::class)->middleware('auth');
 
 
 
